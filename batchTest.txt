@@ -1,0 +1,11 @@
+dir
+help
+help > help.txt
+ls > output.txt
+ls >> output.txt
+wc < envrdir
+wc < envrdir > output.txt
+wc < envrdir >> output.txt
+echo Hello | wc
+ping google.com &
+quit

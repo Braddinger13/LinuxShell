@@ -1,0 +1,187 @@
+                        ****************************************
+                        *           myShell Manual             *
+                        ****************************************
+
+
+DESCRIPTION-
+    myshell is a more basic version of the bash shell. It takes in commands in either interactive or
+    batch mode(script). Interactive mode provides a command line that will prompt the user to enter their
+    command. Batch mode reads from a file of one or multiple command lines in order. myshell runs commands
+    by utilizing one of the many built-in commands or executing an external command. Commands may include bash
+    shell I/O redirection(>, >>, <), piping(|), and background processing(&). The only commands that can be
+    mixed are the input character (<) along with an output character(>, >>), other combinations will not pass.
+
+myshell Modes-
+    When using myshell you are able to use two different modes, interactive or batch mode. Interactive mode 
+    will let you type commands at a prompt one at a time. Batch mode allows you to run a script on myshell.
+    This will not provide a prompt to type at, it will read commands from a file and execute the sequentially.
+
+    Interactive mode-
+        To initiate interactive mode, type 'myshell' into your bash shell:
+            
+            > myshell
+        
+        This will enter the program and display the prompt that will ask for input:
+
+            myshell>
+
+    Batch mode-
+        To use batch mode, type 'myshell [batchFilename]' into your bash shell:
+
+            > myshell batchFilename
+
+        This will read through 'batchFilename' line by line and execute each command without asking
+        for any user input.
+
+        When running batch mode, it is best to end 'batchFilename' with the 'quit' built-in command
+        so myshell knows when to exit.
+
+Built-In Commands-
+
+    cd-
+        The cd function will either print the current directory or change to the diectory specified
+        after cd on the commands line.
+
+        myshell> cd [dirName ...]
+
+        cd:
+            If no arguments are specified, myshell will print the current working directory.
+
+        cd 'dirName':
+            Changes the current working directory variable to dirName, if existing.
+
+    dir-
+        Lists directory contents.
+
+        myshell> dir [dirName ...]
+
+        dir:
+            Lists the contents of the current working directory.
+
+        dir 'dirName':
+            Lists the contents of 'dirName', if exists.
+
+    environ-
+        Lists all the current environment variables.
+
+        myshell> environ
+
+
+        Will still run if improper commands are after the command on the commands line, but
+        will throw error if before.
+
+    help-
+        Outputs myshell user manual.
+
+        myshell> help
+
+
+        Will still run if improper commands are after the command on the commands line, but
+        will throw error if before.
+
+    clr-
+        Clears terminal screen.
+
+        myshell> clr
+
+    quit- 
+        Terminates the program. Use when finished with myshell.
+
+        myshell> quit
+
+    pause-
+        Command line waits until a newline(\n) character is entered(pressing enter).
+
+        myshell> pause
+
+    echo-
+        Displays a line or multiple lines of text.
+
+        myshell> echo [comment] 
+
+        echo: Displays just an empty line.
+
+        echo [comment]: Displays the comment
+
+
+        Echo may use I/O to either send information to echo or to send information to another file
+        that will display what is being echoed.
+        
+External Commands-
+    External commands can also be used in myshell. These are all the commands that are not built-in. For
+    an external command to be valid, it must exists in the shells path(/bin). These commands are also
+    able to take arguments, if they are valid towards that command.
+
+    myshell> externalCommand [arg1] [arg2] ...
+
+
+I/O Redirection-
+    Redirection can allow the user the relate the command being passed to an input file, output file,
+    or both. 
+
+
+    The '<' symbol is used for input redirection. When using '<', the input file that you want
+    to read from should be after the '<', like so:
+
+        myshell> command [args] < inputFile
+    
+    This will open the input file so the command will read its contents and execute.
+
+
+    The '>' symbol is used for output redirection. When using '>', the output file that you want
+    to write to should be after the '>', like so:
+
+        myshell> command [args] > outputFile
+
+    This will open the output file so the command will write to it. If their is no file with the same name 
+    as the one given after the '>', a file will be created with that name and the information will be written.
+    If the file exists and has text in it, this text will be truncated by the new information.
+
+
+    The '>>' symbol is also used for output redirection and should be applied similarily to how '>' is applied:
+
+        myshell> command [args] >> outputFile
+
+    This will also open the output file for writing, and will also create a new file if the outputFile is not
+    found. However, when writing to a file, '>>' will append the information to the file instead of truncating
+    the file.
+
+Piping-
+    myshell offers piping functionality using the '|' symbol. The pipe allows two command processes to communicate.
+    
+        myshell> command1 [args] | command2 [args]
+
+    The left side of the pipe is the command that will be sending information to the command on the right side 
+    of the pipe. So the command to the left of the '|' is the write side, as it is executing and writing information
+    to the pipe, and the command to the right of the '|' is the read side, as it is reading from the pipe and 
+    executing the command with that information.
+
+Background Processing-
+    Another feature of myshell is background processing, using the '&' symbol. This will allow the user to run a
+    command in the background while returning the prompt to the command line.
+
+        myshell> command [args] &
+
+    When putting a process in the background, myshell will output the process id of that process.
+
+Important Notes- 
+
+    1. Something important to note is that myshell does not provide the mixing and matching of every bash command
+    provided. Possible mixtures come from the I/O commands. You may use the input command '<' with either of the
+    output commands '>' or '>>' like so:
+
+        myshell> command < inputFile > outputFile
+                        or
+        myshell> command < inputFile >> outputFile
+    
+    Any other mixing of commands, whether it being these I/Os out of order, or one of the other commands(| or &),
+    will most likely result in an error.
+
+
+    2. When using batch mode, it is better to end your batchFile with the 'quit' command for a smooth exit. If it
+    does not end on 'quit', myshell will likely throw a logic error.
+
+
+
+                                        ***End of manual***
+    
